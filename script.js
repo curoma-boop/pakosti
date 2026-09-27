@@ -54,14 +54,15 @@ noteForm.addEventListener("submit", (event) => {
 renderNotes();
 
 // ---- Счётчик кликов ----
-
 const counterBtn = document.getElementById("counter-btn");
 const counterValue = document.getElementById("counter-value");
-let count = 0;
+let count = parseInt(localStorage.getItem("clickCount"), 10) || 0;
+counterValue.textContent = count;
 
 counterBtn.addEventListener("click", () => {
   count += 1;
   counterValue.textContent = count;
+  localStorage.setItem("clickCount", count);
 });
 
 // ---- Калькулятор ----
