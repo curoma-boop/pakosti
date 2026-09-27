@@ -54,6 +54,7 @@ noteForm.addEventListener("submit", (event) => {
 renderNotes();
 
 // ---- Счётчик кликов ----
+
 const counterBtn = document.getElementById("counter-btn");
 const counterValue = document.getElementById("counter-value");
 let count = parseInt(localStorage.getItem("clickCount"), 10) || 0;
@@ -161,3 +162,72 @@ calcButtons.forEach((btn) => {
     updateDisplay();
   });
 });
+
+// ---- Тема ----
+
+const themeToggle = document.getElementById("theme-toggle");
+const savedTheme = localStorage.getItem("theme") || "dark";
+
+if (savedTheme === "light") {
+  document.body.setAttribute("data-theme", "light");
+  themeToggle.textContent = "Тёмная тема";
+}
+
+themeToggle.addEventListener("click", () => {
+  const isLight = document.body.getAttribute("data-theme") === "light";
+  if (isLight) {
+    document.body.removeAttribute("data-theme");
+    themeToggle.textContent = "Светлая тема";
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.body.setAttribute("data-theme", "light");
+    themeToggle.textContent = "Тёмная тема";
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// ---- Курс Solana ----
+
+const solPriceEl = document.getElementById("sol-price");
+const solChangeEl = document.getElementById("sol-change");
+const sparklineEl = document.getElementById("sol-sparkline");
+
+function drawSparkline(prices, isUp) {
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+  const range = max - min || 1;
+
+  const points = prices
+    .map((price, i) => {
+      const x = (i / (prices.length - 1)) * 120;
+      const y = 40 - ((price - min) / range) * 40;
+      return `${x},${y}`;
+    })
+    .join(" ");
+
+  const color = isUp ? "#6fcf97" : "#e57373";
+  sparklineEl.innerHTML = `<polyline points="${points}" style="stroke:${color}" />`;
+}
+
+fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=SOLUSDT")
+  .then((res) => res.json())
+  .then((data) => {
+    const price = parseFloat(data.lastPrice);
+    const change = parseFloat(data.priceChangePercent);
+
+    solPriceEl.textContent = `$${price.toFixed(2)}`;
+    solChangeEl.textContent = `${change >= 0 ? "+" : ""}${change.toFixed(2)}% за 24ч`;
+    solChangeEl.classList.add(change >= 0 ? "up" : "down");
+
+    return fetch("https://api.binance.com/api/v3/klines?symbol=SOLUSDT&interval=1h&limit=24");
+  })
+  .then((res) => res.json())
+  .then((klines) => {
+    const closePrices = klines.map((candle) => parseFloat(candle[4]));
+    const isUp = closePrices[closePrices.length - 1] >= closePrices[0];
+    drawSparkline(closePrices, isUp);
+  })
+  .catch((err) => {
+    solPriceEl.textContent = "Не удалось загрузить";
+    console.error(err);
+  });

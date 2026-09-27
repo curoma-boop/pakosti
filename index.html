@@ -9,11 +9,23 @@
 <body>
 
   <main class="wrap">
+    <button id="theme-toggle" class="theme-toggle">Светлая тема</button>
+
     <header class="hero">
-      <p class="tag">учебная страница</p>
+      <p class="tag"><a href="https://soundcloud.com/roma-czu">мой ск</a></p>
       <h1>Песочница</h1>
       <p class="lead">Маленький HTML/CSS/JS-шаблон, чтобы потренироваться: открой файлы в VS Code, меняй код и смотри результат.</p>
     </header>
+
+    <section class="card">
+      <h2>Курс Solana</h2>
+      <p class="hint">Обновляется при загрузке страницы.</p>
+      <div class="price">
+        <span id="sol-price">Загрузка…</span>
+        <span id="sol-change" class="price-change"></span>
+        <svg id="sol-sparkline" class="sparkline" viewBox="0 0 120 40" preserveAspectRatio="none"></svg>
+      </div>
+    </section>
 
     <section class="card">
       <h2>Заметки</h2>
