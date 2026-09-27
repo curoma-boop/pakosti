@@ -1,0 +1,191 @@
+:root {
+  --bg: #16151a;
+  --surface: #201f26;
+  --surface-2: #29282f;
+  --text: #ece9e4;
+  --text-dim: #9a978f;
+  --accent: #d9a15b;
+  --accent-dim: #8b7452;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+.hero { margin-bottom: 48px; }
+
+.tag {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(32px, 6vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--text-dim);
+  font-size: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid #33323a;
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.hint {
+  margin: 0 0 16px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+.note-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.note-form input {
+  flex: 1;
+  background: var(--surface-2);
+  border: 1px solid #3a3940;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.note-form input:focus {
+  outline: 2px solid var(--accent-dim);
+  outline-offset: 1px;
+}
+
+.note-form button,
+.counter-btn {
+  background: var(--accent);
+  color: #201a10;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.note-form button:hover,
+.counter-btn:hover { opacity: 0.9; }
+
+.note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.note-list button {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.note-list button:hover { color: var(--accent); }
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#counter-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ---- Калькулятор ---- */
+
+.calc-display {
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 16px 14px;
+  text-align: right;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.calc-btn {
+  background: var(--surface-2);
+  border: 1px solid #3a3940;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 18px;
+  padding: 14px 0;
+  cursor: pointer;
+}
+
+.calc-btn:hover { background: #33323a; }
+
+.calc-op {
+  background: #33323a;
+  color: var(--accent);
+}
+
+.calc-equals {
+  background: var(--accent);
+  color: #201a10;
+  font-weight: 600;
+}
+
+.calc-equals:hover { opacity: 0.9; }
+
+.calc-zero { grid-column: span 2; }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Песочница</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="wrap">
+    <header class="hero">
+      <p class="tag">учебная страница</p>
+      <h1>Песочница</h1>
+      <p class="lead">Маленький HTML/CSS/JS-шаблон, чтобы потренироваться: открой файлы в VS Code, меняй код и смотри результат.</p>
+    </header>
+
+    <section class="card">
+      <h2>Заметки</h2>
+      <p class="hint">Добавь пару строк — они сохранятся в браузере (localStorage), даже если перезагрузить страницу.</p>
+
+      <form id="note-form" class="note-form">
+        <input id="note-input" type="text" placeholder="Что нужно запомнить?" autocomplete="off" required>
+        <button type="submit">Добавить</button>
+      </form>
+
+      <ul id="note-list" class="note-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Счётчик кликов</h2>
+      <p class="hint">Простой пример обработчика событий.</p>
+      <div class="counter">
+        <button id="counter-btn" class="counter-btn">Нажми меня</button>
+        <span id="counter-value">0</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Калькулятор</h2>
+      <p class="hint">Базовые операции: сложение, вычитание, умножение, деление.</p>
+
+      <div class="calc">
+        <div id="calc-display" class="calc-display">0</div>
+        <div class="calc-grid">
+          <button class="calc-btn calc-op" data-action="clear">C</button>
+          <button class="calc-btn calc-op" data-action="sign">±</button>
+          <button class="calc-btn calc-op" data-action="percent">%</button>
+          <button class="calc-btn calc-op" data-value="/">÷</button>
+
+          <button class="calc-btn" data-value="7">7</button>
+          <button class="calc-btn" data-value="8">8</button>
+          <button class="calc-btn" data-value="9">9</button>
+          <button class="calc-btn calc-op" data-value="*">×</button>
+
+          <button class="calc-btn" data-value="4">4</button>
+          <button class="calc-btn" data-value="5">5</button>
+          <button class="calc-btn" data-value="6">6</button>
+          <button class="calc-btn calc-op" data-value="-">−</button>
+
+          <button class="calc-btn" data-value="1">1</button>
+          <button class="calc-btn" data-value="2">2</button>
+          <button class="calc-btn" data-value="3">3</button>
+          <button class="calc-btn calc-op" data-value="+">+</button>
+
+          <button class="calc-btn calc-zero" data-value="0">0</button>
+          <button class="calc-btn" data-action="decimal">,</button>
+          <button class="calc-btn calc-equals" data-action="equals">=</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
